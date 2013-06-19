@@ -68,10 +68,13 @@
     CCMenuItem *launchMenuItem = [CCMenuItemFont itemWithString:@"launch" target:self selector:@selector(launchRocketToOuterSpace)];
     launchMenuItem.position = ccp(self.screensize.width - launchMenuItem.contentSize.width/2 - MENU_BUFFER, spinMenuItem.position.y - MENU_ITEM_BUFFER);
     
-    CCMenuItem *comboMenuItem = [CCMenuItemFont itemWithString:@"combo" target:self selector:@selector(spinandLaunchRocket)];
+    CCMenuItem *comboMenuItem = [CCMenuItemFont itemWithString:@"combo" target:self selector:@selector(spinThenLaunchRocket)];
     comboMenuItem.position = ccp(self.screensize.width - comboMenuItem.contentSize.width/2 - MENU_BUFFER, launchMenuItem.position.y - MENU_ITEM_BUFFER);
     
-    CCMenu *gameMenu = [CCMenu menuWithItems:menuItem, resetMenuItem, spinMenuItem, launchMenuItem, comboMenuItem, nil];
+    CCMenuItem *comboPlusMenuItem = [CCMenuItemFont itemWithString:@"combo+" target:self selector:@selector(spinandLaunchRocket)];
+    comboPlusMenuItem.position = ccp(self.screensize.width - comboPlusMenuItem.contentSize.width/2 - MENU_BUFFER, comboMenuItem.position.y - MENU_ITEM_BUFFER);
+    
+    CCMenu *gameMenu = [CCMenu menuWithItems:menuItem, resetMenuItem, spinMenuItem, launchMenuItem, comboMenuItem, comboPlusMenuItem, nil];
     gameMenu.position = CGPointZero;
     
     [self addChild:gameMenu z:3];
@@ -108,8 +111,16 @@
 
 - (void)spinandLaunchRocket {
     CCRotateBy *spinOnce = [CCRotateBy actionWithDuration:2 angle: 360];
-    [_rocket runAction:spinOnce];
     CCMoveTo *moveToOuterSpace = [CCMoveTo actionWithDuration:1.0 position:ccp(self.screensize.width/2, 700)];
+    CCEaseInOut *easeToOuterSpace = [CCEaseInOut actionWithAction:moveToOuterSpace rate:2];
+    
+    
+    [_rocket runAction:spinOnce];
+    [_rocket runAction:easeToOuterSpace];
+}
+
+- (void)spinThenLaunchRocket {
+    CCRotateBy *spinOnce = [CCRotateBy actionWithDuration:2 angle: 360];    CCMoveTo *moveToOuterSpace = [CCMoveTo actionWithDuration:1.0 position:ccp(self.screensize.width/2, 700)];
     CCEaseInOut *easeToOuterSpace = [CCEaseInOut actionWithAction:moveToOuterSpace rate:2];
     CCSequence *easeIntoSpace = [CCSequence actions: spinOnce, easeToOuterSpace, nil];
     
