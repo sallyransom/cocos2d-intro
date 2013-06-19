@@ -68,19 +68,19 @@
 - (void)gotoRocketAnimations {
     [[CCDirector sharedDirector] replaceScene:
      [CCTransitionFade transitionWithDuration:1.0
-                                               scene:[SRRocketAnimationScene node]]];
+                                               scene:[SRRocketAnimationScene scene]]];
 }
 
 - (void)gotoDraggingRockets {
     [[CCDirector sharedDirector] replaceScene:
      [CCTransitionFlipAngular transitionWithDuration:1.0
-                                               scene:[SRDraggingRocketScene node]]];
+                                               scene:[SRDraggingRocketScene scene]]];
 }
 
 - (void)gotoParticleEmitter {
     [[CCDirector sharedDirector] replaceScene:
      [CCTransitionProgressRadialCW transitionWithDuration:1.0
-                                               scene:[SRParticleEmitter node]]];
+                                               scene:[SRParticleEmitter scene]]];
 }
 
 @end

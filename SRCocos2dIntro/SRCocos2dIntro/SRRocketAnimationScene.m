@@ -82,7 +82,7 @@
 - (void)gotoMenuScene {
     [[CCDirector sharedDirector] replaceScene:
      [CCTransitionFade transitionWithDuration:1.0
-                                               scene:[SRMenuScene node]]];
+                                               scene:[SRMenuScene scene]]];
 }
 
 #pragma mark - Animation Methods

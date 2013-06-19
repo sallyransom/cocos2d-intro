@@ -64,7 +64,7 @@
 - (void)gotoMenuScene {
     [[CCDirector sharedDirector] replaceScene:
      [CCTransitionFlipAngular transitionWithDuration:1.0
-                                               scene:[SRMenuScene node]]];
+                                               scene:[SRMenuScene scene]]];
 }
 
 @end

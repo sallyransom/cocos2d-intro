@@ -103,7 +103,7 @@
 - (void)gotoMenuScene {
     [[CCDirector sharedDirector] replaceScene:
      [CCTransitionProgressRadialCCW transitionWithDuration:1.0
-                                               scene:[SRMenuScene node]]];
+                                               scene:[SRMenuScene scene]]];
 }
 
 - (void)launchRocketToOuterSpace {
